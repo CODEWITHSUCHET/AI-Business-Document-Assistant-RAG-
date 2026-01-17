@@ -11,12 +11,15 @@ from langchain_core.documents import Document
 
 # --- Page Config ---
 st.set_page_config(page_title="Free RAG Bot", layout="wide")
-st.title("🤖 Free Google Doc Chatbot (Llama 3 + Groq)")
+st.title("🤖 Free Google Doc Chatbot")
 
-# --- Sidebar ---
-with st.sidebar:
-    st.header("Settings")
-    groq_api_key = st.text_input("Groq API Key", type="password")
+# --- API KEY HANDLING (Secret + Sidebar Fallback) ---
+try:
+    groq_api_key = st.secrets["GROQ_API_KEY"]
+except:
+    with st.sidebar:
+        st.header("Settings")
+        groq_api_key = st.text_input("Groq API Key", type="password")
 
 # --- Functions ---
 
@@ -50,7 +53,7 @@ doc_url = st.text_input("Paste Public Google Doc URL:")
 
 if st.button("Load Document"):
     if not groq_api_key:
-        st.error("Please enter your Groq API Key.")
+        st.error("API Key missing.")
     elif not doc_url:
         st.error("Please enter a URL.")
     else:
@@ -58,7 +61,7 @@ if st.button("Load Document"):
             raw_text, error = get_google_doc_text(doc_url)
             if raw_text:
                 st.session_state.vectorstore = process_text(raw_text)
-                st.success("Ready!")
+                st.success("Knowledge Base Ready!")
             else:
                 st.error(error)
 
@@ -68,11 +71,17 @@ if prompt := st.chat_input("Ask a question..."):
 
     if st.session_state.vectorstore:
         with st.chat_message("assistant"):
+            if not groq_api_key:
+                 st.error("API Key is missing.")
+                 st.stop()
+                 
+            # Model
             llm = ChatGroq(groq_api_key=groq_api_key, model_name="llama-3.3-70b-versatile")
+            
             retriever = st.session_state.vectorstore.as_retriever()
             
-            # Simple RAG Chain
-            template = """Answer based only on the following context:
+            # Simple RAG Chain (The Safe Way)
+            template = """Answer the question based only on the following context:
             {context}
             
             Question: {question}

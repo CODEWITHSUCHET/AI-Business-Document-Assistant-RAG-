@@ -1,0 +1,7 @@
+# Ignore API keys and secrets
+.streamlit/secrets.toml
+
+# Ignore system environments (too big)
+myenv/
+venv/
+__pycache__/
