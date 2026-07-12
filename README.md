@@ -1,29 +1,29 @@
-# 🤖 AI Business Document Assistant (RAG)
+# 🤖 AI Google Docs Assistant (RAG)
 
-An AI-powered Retrieval-Augmented Generation (RAG) application that enables users to upload PDF documents and interact with them using natural language. The system leverages semantic search with FAISS and Google's Gemini LLM to deliver fast, accurate, and context-aware answers from business documents.
+An AI-powered Retrieval-Augmented Generation (RAG) application that enables users to connect a public Google Document and interact with it using natural language. The system retrieves relevant information using semantic search with FAISS and generates context-aware responses using Google's Gemini LLM.
 
 ---
 
 # 🚀 Project Overview
 
-Organizations generate thousands of documents such as reports, policies, contracts, manuals, financial statements, and research papers. Extracting relevant information manually is slow, inefficient, and time-consuming.
+Organizations frequently share reports, policies, documentation, meeting notes, research papers, and knowledge bases through Google Docs. Locating specific information within lengthy documents can be time-consuming and inefficient.
 
-This project addresses this challenge by building an intelligent document assistant that understands uploaded PDF documents and answers user questions in natural language using Retrieval-Augmented Generation (RAG).
+This project solves that problem by allowing users to provide a public Google Docs link and ask questions in natural language. The application retrieves relevant content using semantic search and generates accurate, context-aware answers using Google's Gemini LLM.
 
-Instead of relying solely on an LLM's pre-trained knowledge, the application retrieves relevant document content through semantic search before generating responses, ensuring answers remain grounded in the uploaded documents.
+Instead of relying solely on the LLM's internal knowledge, responses are grounded in the actual document content through a Retrieval-Augmented Generation (RAG) pipeline.
 
 ---
 
 # ✨ Key Features
 
-- Upload PDF documents
-- Intelligent document understanding
+- Load public Google Docs
+- Automatic document parsing
 - Semantic search using FAISS
 - Retrieval-Augmented Generation (RAG)
 - Context-aware responses using Google Gemini
 - LangChain-powered pipeline
-- Simple Streamlit web interface
-- Fast and scalable document search
+- Interactive Streamlit interface
+- Fast document retrieval
 
 ---
 
@@ -33,8 +33,8 @@ Instead of relying solely on an LLM's pre-trained knowledge, the application ret
 - Streamlit
 - LangChain
 - Google Gemini API
-- FAISS Vector Database
-- PyPDF
+- FAISS
+- Google Docs API
 - Sentence Transformers
 
 ---
@@ -42,64 +42,61 @@ Instead of relying solely on an LLM's pre-trained knowledge, the application ret
 # ⚙️ Architecture
 
 ```
-                PDF Documents
-                      │
-                      ▼
-             Text Extraction
-                      │
-                      ▼
-              Text Chunking
-                      │
-                      ▼
-          Embedding Generation
-                      │
-                      ▼
-            FAISS Vector Store
-                      │
-        User asks a Question
-                      │
-                      ▼
-          Semantic Retrieval
-                      │
-                      ▼
-          Google Gemini LLM
-                      │
-                      ▼
-           Context-Aware Answer
+          Google Docs URL
+                 │
+                 ▼
+        Document Extraction
+                 │
+                 ▼
+          Text Chunking
+                 │
+                 ▼
+      Embedding Generation
+                 │
+                 ▼
+        FAISS Vector Store
+                 │
+        User Question
+                 │
+                 ▼
+      Semantic Retrieval
+                 │
+                 ▼
+      Google Gemini LLM
+                 │
+                 ▼
+      Context-Aware Answer
 ```
 
 ---
 
 # 📌 Workflow
 
-1. Upload one or more PDF documents.
-2. Extract text from the uploaded files.
-3. Split the document into semantic chunks.
+1. Enter a public Google Docs URL.
+2. Load the document.
+3. Extract and split the content into chunks.
 4. Generate vector embeddings.
-5. Store embeddings inside FAISS.
-6. User asks a question.
-7. Retrieve the most relevant document chunks.
-8. Send retrieved context to Google Gemini.
-9. Generate an accurate, document-grounded response.
+5. Store embeddings in FAISS.
+6. Ask questions in natural language.
+7. Retrieve the most relevant document context.
+8. Generate accurate answers using Google Gemini.
 
 ---
 
 # 💼 Business Applications
 
 - Enterprise Knowledge Assistant
-- Internal Policy Search
-- Contract & Legal Document Q&A
-- HR Documentation Assistant
-- Financial Report Analysis
-- Research Paper Assistant
-- Standard Operating Procedure (SOP) Search
-- Customer Support Knowledge Base
+- Internal Documentation Search
+- Company Policy Assistant
+- Research Documentation
+- Knowledge Base Search
+- Project Documentation Assistant
 
 ---
 
 # 📷 Application Preview
 
-*Add screenshots of the Streamlit application here.*
+(Add screenshots here)
 
 ---
 
@@ -119,13 +116,12 @@ streamlit run app.py
 
 # 🔮 Future Improvements
 
-- Multi-document conversations
-- Chat history
-- Source citation
+- Support multiple Google Docs
+- PDF & DOCX support
 - Authentication
+- Source citations
 - Docker deployment
 - Cloud deployment
-- OCR support for scanned PDFs
 
 ---
 
@@ -136,5 +132,3 @@ streamlit run app.py
 MBA | IIT Mandi (Minor in Computer Science)
 
 Business Growth • Strategy • Analytics • AI
-
-GitHub: https://github.com/CODEWITHSUCHET
