@@ -55,13 +55,6 @@ This solution can be used for:
 - Customer Support Knowledge Base
 - Research Assistant
 
----
-
-## 📷 Screenshots
-
-*Screenshots coming soon.*
-
----
 
 ## ⚙️ Installation
 
